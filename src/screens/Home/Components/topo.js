@@ -14,7 +14,6 @@ class Topo extends React.Component{
     atualizaTopo(){
         const retorno = requestTopo();
         this.setState({topo: retorno})
-        console.log(retorno)
     }
     componentDidMount(){
         this.atualizaTopo();
