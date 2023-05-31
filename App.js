@@ -11,7 +11,7 @@ export default function App(){
   )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   }

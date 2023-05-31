@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, StyleSheet } from "react-native";
 
-import { requestProdutores } from '../../../services/request'
+import Produtor from "./Produtor";
+import setProdutores from "../../../hooks/setProdutores";
+
 
 export default function Produtores({topo: Topo}){
-    const [titulo, setTitulo] = useState('')
-    const [lista, setLista] = useState([])
-    useEffect( () => {
-        const retorno = requestProdutores()
-        setTitulo(retorno.titulo)
-        setLista(retorno.lista)
-    }, [])
+    const [titulo, lista] = setProdutores()
 
     const topoLista = () => {
         return <>
@@ -20,13 +16,13 @@ export default function Produtores({topo: Topo}){
     }
     return <FlatList
         data={lista}
-        renderItem = { ({item : {name}}) => <Text>{name}</Text>}
+        renderItem = { ({item}) => <Produtor {...item}/>}
         keyExtractor = {(name) => name}
         ListHeaderComponent = {topoLista()}
     />
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         lineHeight: 32,
